@@ -1,0 +1,7 @@
+$base-color: #df6c50;
+$border-dark: rgba($base-color, 0.88);
+
+p {
+    -webkit-text-stroke: 2px $border-dark;
+    color: $base-color;
+}

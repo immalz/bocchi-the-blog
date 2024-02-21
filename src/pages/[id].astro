@@ -1,0 +1,72 @@
+---
+import Layout from "../layouts/Layout.astro"
+
+export async function getStaticPaths() {
+  return [
+    { params: { id: 'bocchi-1' } },
+    { params: { id: 'bocchi-2' } },
+    { params: { id: 'bocchi-3' } },
+    { params: { id: 'bocchi-4' } },
+    { params: { id: 'bocchi-5' } },
+  ];
+}
+
+const { id } = Astro.params;
+import { blogs } from '../data/blogs';
+
+const blog: any = blogs.find((blog) => blog.id === id);
+---
+
+
+<Layout title="holi">
+  <main>
+    <h1 style={`view-transition-name: title-${blog.id}`}>{blog.title}</h1>
+    <h4>Author: {blog.author}</h4>
+    <img src={`${blog.image}`} style={`view-transition-name: blog-${blog.id}`}>
+    <h2>{blog.content}</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus suscipit assumenda ea deserunt nobis cupiditate fugiat unde consequatur excepturi sequi, ut autem saepe quo, est quae fuga! Natus dolorem aliquam adipisci nostrum soluta assumenda ut quos ipsam ipsum! Sunt, ipsum? Maiores, saepe commodi? Voluptates ducimus aperiam inventore qui nemo consequuntur dicta expedita et tenetur officia repudiandae quibusdam ex odit id ratione, sint iure dolorum, unde libero quo! Sunt doloribus voluptates sint ullam aut earum cumque, repellendus recusandae! Perspiciatis deleniti ea voluptatum aperiam cupiditate suscipit esse dolorem officiis veniam laboriosam ducimus, at labore praesentium quo minima rem molestiae fugit commodi hic!</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus suscipit assumenda ea deserunt nobis cupiditate fugiat unde consequatur excepturi sequi, ut autem saepe quo, est quae fuga! Natus dolorem aliquam adipisci nostrum soluta assumenda ut quos ipsam ipsum! Sunt, ipsum? Maiores, saepe commodi? Voluptates ducimus aperiam inventore qui nemo consequuntur dicta expedita et tenetur officia repudiandae quibusdam ex odit id ratione, sint iure dolorum, unde libero quo! Sunt doloribus voluptates sint ullam aut earum cumque, repellendus recusandae! Perspiciatis deleniti ea voluptatum aperiam cupiditate suscipit esse dolorem officiis veniam laboriosam ducimus, at labore praesentium quo minima rem molestiae fugit commodi hic!</p>
+  </main>
+
+</Layout>
+
+<style lang="scss">
+
+  main {
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: 500px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    h1 {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    h4 {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: 300;
+    }
+
+    h2 {
+      font-size: 30px;
+      margin: 20px 0;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: 300;
+    }
+
+  }
+
+</style>
