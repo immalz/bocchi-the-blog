@@ -1,13 +1,13 @@
 ---
 import Card from './Card.astro';
 
-import { blogs } from '../data/blogs';
+import { blogs } from '../data/blogs.js';
 
 ---
 
 <section>
     {
-        blogs.map((card, index) => {
+        blogs.map((card: any, index: any) => {
             return (
                 <a href={`/${card.id}`} class:list={['card', {big: index === 0}]}>
                     <div class="card__img">
@@ -37,8 +37,8 @@ import { blogs } from '../data/blogs';
 </div>
 
 <script>
-    const button = document.querySelector(".more-button");
-      button.addEventListener("click", (e) => {
+    const button: any = document.querySelector(".more-button");
+      button.addEventListener("click", (e: any) => {
         e.preventDefault;
         button.classList.add("animate");
         setTimeout(() => {
