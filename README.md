@@ -29,9 +29,11 @@ Inside of your Astro project, you'll see the following folders and files:
 ├── public/
 ├── src/
 │   ├── components/
-│   ├── content/
+│   ├── data/
 │   ├── layouts/
 │   └── pages/
+│   └── styles/
+│   └── types/
 ├── astro.config.mjs
 ├── README.md
 ├── package.json
