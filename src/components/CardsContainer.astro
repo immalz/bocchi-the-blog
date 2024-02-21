@@ -1,4 +1,5 @@
 ---
+import Button from './Button.astro';
 import Card from './Card.astro';
 import { blogs } from '../data/blogs.js';
 
@@ -8,46 +9,15 @@ import { blogs } from '../data/blogs.js';
     {
         blogs.map((card: any, index: any) => {
             return (
-                <a href={`/${card.id}`} class:list={['card', {big: index === 0}]}>
-                    <div class="card__img">
-                        <img src={`${card.image}`} alt={`${card.title}`} style={`view-transition-name: title-${card.id}`}/>    
-                        <p class="tag">#{card.tag}</p>
-                    </div>
-                    <div class="card__text">
-                        <h2 style={`view-transition-name: blog-${card.id}`}>{card.title}</h2>
-                        <p>{card.content}</p>
-                        <div class="author">
-                            <p>{card.author}</p>
-                            <p>{card.date}</p>
-                        </div>
-                    </div>
-                </a>
+                <Card article={card} index={index} />
             )
         })
-    }
-
-    
+    } 
 </section>
 
-<div class="more">
-    <a href="/articulos" class="more-button">
-        Ver más
-    </a>
-</div>
-
-<script>
-    const button: any = document.querySelector(".more-button");
-      button.addEventListener("click", (e: any) => {
-        e.preventDefault;
-        button.classList.add("animate");
-        setTimeout(() => {
-          button.classList.remove("animate");
-        }, 600);
-    });
-</script>
+<Button text="Ver más" route="articulos"/>
 
 <style lang="scss">
-
     section {
         width: 100%;
         display: grid;
@@ -66,197 +36,4 @@ import { blogs } from '../data/blogs.js';
             grid-template-columns: repeat(3, 1fr);
         }
     }
-
-
-    .card {
-        border-radius: 10px;
-        margin: 1rem;
-        overflow: hidden;
-        box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
-        display: flex;
-        flex-direction: column;
-        max-height: 400px;
-        transition: all 0.2s ease-in-out;
-        background-color: #fff;
-        &:hover {
-            top: -2px;
-            box-shadow: 0px 0px 20px 10px rgba(0,0,0,0.1);
-
-            .card__img {
-                background-size: 105%;
-            }
-
-        }
-
-        &__img {
-            width: 100%;
-            height: 60%;
-            overflow: hidden;
-            background-position-x: center;
-            position: relative;
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                transition: all 0.2s ease-in-out;
-            }
-
-            .tag {
-                position: absolute;
-                top: 10px;
-                left: 10px;
-                padding: 5px 10px;
-                background-color: rgba(0,0,0,0.3);
-                color: white;
-                border-radius: 10px;
-                letter-spacing: 1px;
-            }
-        }
-
-        &__text {
-            height: 40%;
-            padding: 10px 20px;
-            display: grid;
-            grid-template-rows: auto 1fr auto;
-            h2 {
-                font-size: 25px;
-                color: #575757;
-                // font-weight: 700;
-                line-height: 20px;
-                transition: all 0.2s ease-in-out;
-                margin-bottom: 10px;
-            
-            }
-
-            p {
-                font-size: 14px;
-                font-weight: 300;
-            }
-
-            .author {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                flex-direction: row;
-                // margin-top: 10px;
-                p {
-                    font-size: 12px;
-                    color: #a5a5a5;
-                }
-            
-            }
-        }
-    }
-
-    .big {
-        @media (min-width: 60em) {
-            grid-column: 1 / span 2;
-            
-            h2 {
-            font-size: 30px;
-            }
-            
-        }
-    }
-
-    .more {
-        width: 100%;
-        height: 80px;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        margin: 2rem 0;
-
-        .more-button {
-            width: 200px;
-            border-radius: 20px;
-            border: none;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #010101;
-            color: #fff;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            position: relative;
-            padding: 10px 22px;
-            font-weight: 600;
-
-            &:active {
-                transform: scale(0.96);
-            }
-
-            &::after, &::before {
-                content: '';
-                position: absolute;
-                left: 50%;
-                width: 100%;
-                height: 150px;
-                transform: translateX(-50%);
-                z-index: -1000;
-                background-repeat: no-repeat;
-                // overflow: hidden;
-            }
-
-            &:hover::before {
-                top: -70%;
-                background-image: radial-gradient(circle, #000 20%, transparent 20%),
-                    radial-gradient(circle, transparent 20%, #000 20%, transparent 30%),
-                    radial-gradient(circle, #000 20%, transparent 20%),
-                    radial-gradient(circle, #000 20%, transparent 20%),
-                    radial-gradient(circle, transparent 10%, #000 15%, transparent 20%),
-                    radial-gradient(circle, #000 20%, transparent 20%),
-                    radial-gradient(circle, #000 20%, transparent 20%),
-                    radial-gradient(circle, #000 20%, transparent 20%),
-                    radial-gradient(circle, #000 20%, transparent 20%);
-                background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%,
-                    10% 10%, 18% 18%;
-                animation: greentopBubbles ease-in-out 0.6s forwards ;
-            }
-            @keyframes greentopBubbles {
-                0% {
-                    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%,
-                    40% 90%, 55% 90%, 70% 90%;
-                }
-                50% {
-                    background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%,
-                    50% 50%, 65% 20%, 90% 30%;
-                }
-                100% {
-                    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%,
-                    50% 40%, 65% 10%, 90% 20%;
-                    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
-                }
-            }
-            &:hover::after {
-                bottom: -70%;
-                background-image: radial-gradient(circle, #000 20%, transparent 20%),
-                    radial-gradient(circle, #000 20%, transparent 20%),
-                    radial-gradient(circle, transparent 10%, #000 15%, transparent 20%),
-                    radial-gradient(circle, #000 20%, transparent 20%),
-                    radial-gradient(circle, #000 20%, transparent 20%),
-                    radial-gradient(circle, #000 20%, transparent 20%),
-                    radial-gradient(circle, #000 20%, transparent 20%);
-                background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 20% 20%, 18% 18%;
-                animation: greenbottomBubbles ease-in-out 0.6s forwards ;
-            }
-            @keyframes greenbottomBubbles {
-                0% {
-                    background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%,
-                    70% -10%, 70% 0%;
-                }
-                50% {
-                    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%,
-                    105% 0%;
-                }
-                100% {
-                    background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%,
-                    110% 10%;
-                    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
-                }
-            }
-        }
-    }
-
-
 </style>
