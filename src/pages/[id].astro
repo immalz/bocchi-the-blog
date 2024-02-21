@@ -18,7 +18,7 @@ const blog: any = blogs.find((blog) => blog.id === id);
 ---
 
 
-<Layout title="holi">
+<Layout title={blog.title}>
   <main>
     <h1 style={`view-transition-name: title-${blog.id}`}>{blog.title}</h1>
     <h4>Author: {blog.author}</h4>
