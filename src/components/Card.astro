@@ -31,11 +31,11 @@ const blog = blogs.find((blog: Blog) => blog.id === article.id) as Blog;
 
 <a href={`/${blog.id}`} class:list={['card', {big: index === 0}]}>
     <div class="card__img">
-        <img src={`${blog.image}`} alt={`${blog.title}`} style={`view-transition-name: title-${blog.id}`}/>    
+        <img src={`${blog.image}`} alt={`${blog.title}`}/>    
         <p class="tag">#{blog.tag}</p>
     </div>
     <div class="card__text">
-        <h2 style={`view-transition-name: blog-${blog.id}`}>{blog.title}</h2>
+        <h2>{blog.title}</h2>
         <p>{blog.content}</p>
         <div class="author">
             <p>{blog.author}</p>

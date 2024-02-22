@@ -1,1 +1,0 @@
-import"./hoisted.Ce1WhULN.js";const t=document.querySelector(".more-button");t.addEventListener("click",e=>{e.preventDefault,t.classList.add("animate"),setTimeout(()=>{t.classList.remove("animate")},600)});
