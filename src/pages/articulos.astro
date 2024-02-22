@@ -5,8 +5,7 @@ import { blogs } from "../data/blogs";
 ---
 
 <Layout title="Todos los blogs">
-  <h1>Todos los blog disponibles</h1>
-  <h2>Filtrar por categorias</h2>
+  <h1>Ultimas noticias</h1>
 
     <section>
         {
@@ -41,7 +40,7 @@ import { blogs } from "../data/blogs";
         width: 100%;
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 30px;
 
     }
 
@@ -51,12 +50,20 @@ import { blogs } from "../data/blogs";
         overflow: hidden;
         box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
         display: flex;
-        height: 300px;
+        height: 200px;
         transition: all 0.2s ease-in-out;
         background-color: #fff;
 
+        &:hover {
+            top: -2px;
+            box-shadow: 0px 0px 20px 10px rgba(0,0,0,0.1);
+            .card__img {
+                background-size: 105%;
+            }
+        }
+
         &__img {
-            width: 60%;
+            width: 30%;
             height: 100%;
             overflow: hidden;
             position: relative;
@@ -78,6 +85,7 @@ import { blogs } from "../data/blogs";
         }
 
         &__text {
+            width: 70%;
             height: 100%;
             padding: 10px 20px;
             display: grid;

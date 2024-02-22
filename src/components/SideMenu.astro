@@ -1,0 +1,43 @@
+---
+import IgPost from './IgPost.astro';
+import FilterList from './FilterList.astro';
+---
+
+
+<div>
+    <section>
+        <h2>Categories</h2>
+        <FilterList />
+    </section>
+    <section>
+        <h2>Posts</h2>
+        <IgPost />
+    </section>
+</div>
+
+
+<style lang="scss">
+
+    div {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        // justify-content: space-between;
+        height: 100%;
+        gap: 30px;
+
+        section {
+            width: 100%;
+            height: max-content;
+            display: flex;
+            flex-direction: column;
+            // justify-content: center;
+            align-items: center;
+
+            h2 {
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+</style>

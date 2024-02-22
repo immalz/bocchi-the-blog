@@ -1,0 +1,123 @@
+---
+import Icon from './Icon.astro';
+
+interface categories {
+	id: number;
+    name: string;
+    icon: string;
+    route: string;
+
+}
+
+const categories = [
+    {
+        id: 1,
+        name: "Electronics",
+        icon: "3dprinter",
+        route: "electronics"
+    },
+    {
+        id: 2,
+        name: "Clothing",
+        icon: "art",
+        route: "clothing"
+    },
+    {
+        id: 3,
+        name: "Books",
+        icon: "list",
+        route: "books"
+    },
+    {
+        id: 4,
+        name: "Furniture",
+        icon: "3dprinter",
+        route: "furniture"
+    },
+    {
+        id: 5,
+        name: "Automobile",
+        icon: "3dprinter",
+        route: "automobile"
+    },
+    {
+        id: 6,
+        name: "Real Estate",
+        icon: "3dprinter",
+        route: "real-estate"
+    },
+    {
+        id: 7,
+        name: "Services",
+        icon: "3dprinter",
+        route: "services"
+    },
+    {
+        id: 8,
+        name: "Jobs",
+        icon: "3dprinter",
+        route: "jobs"
+    },
+    {
+        id: 9,
+        name: "Pets",
+        icon: "3dprinter",
+        route: "pets"
+    },
+    {
+        id: 10,
+        name: "Miscellaneous",
+        icon: "3dprinter",
+        route: "miscellaneous"
+    }
+]
+
+---
+
+
+    <ul class="categories">
+        {
+            categories.map(category => (
+                <li>
+                    <a href={`/category/${category.id}`}>
+                        <Icon icon={category.icon} />
+                        {category.name}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+
+<style lang="scss">
+
+    ul {
+        width: 100%;
+        border-radius: 10px;
+        background-color: #f8fafc;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        gap: 5px;
+        li {
+            a {
+                width: 100%;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                padding: 0 20px;
+                margin: 0;
+                color: #848b94;
+                transition: all 0.2s ease-in-out;
+
+                &:hover {
+                    color: #5c6168;
+                    background-color: #dbdee0;
+                }
+            }
+        }
+    }
+</style>
