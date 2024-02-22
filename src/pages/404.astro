@@ -1,0 +1,47 @@
+---
+import Layout from "../layouts/Layout.astro"
+import Header from "../components/Header.astro"
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - No se encontró la pagina</title>
+</head>
+<body>
+    <Header />
+    <div>
+        <img src="/images/404.png" alt="bocchi no encontro la pagina">
+        <h1>404 - No se encontró la pagina</h1>
+    </div>
+</body>
+</html>
+
+
+<style lang="scss">
+    body {
+        margin: 0;
+        padding: 0;
+
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+
+            img {
+                width: 200px;
+                height: 200px;
+            }
+        }
+
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 900;
+            font-size: 40px;
+        }
+    }
+</style>
