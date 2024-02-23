@@ -13,7 +13,7 @@ import { blogs } from "../data/blogs";
                 return (
                     <a href={`/${card.id}`} class:list={['card', {big: index === 0}]}>
                         <div class="card__img">
-                            <img src={`${card.image}`} alt={`${card.title}`} style={`view-transition-name: title-${card.id}`}/>    
+                            <img src={`${card.image}`} alt={`${card.title}`} transition:name={`blog-img-name-${card.id}`}/>    
                             <p class="tag">#{card.tag}</p>
                         </div>
                         <div class="card__text">
@@ -93,11 +93,9 @@ import { blogs } from "../data/blogs";
             h2 {
                 font-size: 25px;
                 color: #575757;
-                // font-weight: 700;
                 line-height: 20px;
                 transition: all 0.2s ease-in-out;
                 margin-bottom: 10px;
-            
             }
 
             p {
