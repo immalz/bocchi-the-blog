@@ -1,20 +1,47 @@
 ---
+interface Props {
+    mode: string;
+    detail?: any;
+    sections?: string[];
+}
+interface section {
+    subtitle: string,
+    text: string
+}
+
+const { mode, sections}  = Astro.props;
+console.log(sections);
 import IgPost from './IgPost.astro';
 import FilterList from './FilterList.astro';
+import Author from './Author.astro';
+
+
 ---
 
 
 <div>
-    <section>
-        <h2>Categories</h2>
-        <span class="separate"></span>
-        <FilterList />
-    </section>
-    <section>
-        <h2>Posts</h2>
-        <span class="separate"></span>
-        <IgPost />
-    </section>
+    {
+        () => {
+            if (mode === 'post') {
+                return (
+                    <Author sections={sections}/>
+                )
+            } else {
+                return (
+                    <section>
+                        <h2>Categories</h2>
+                        <span class="separate"></span>
+                        <FilterList />
+                    </section>
+                    <section>
+                        <h2>Posts</h2>
+                        <span class="separate"></span>
+                        <IgPost />
+                    </section>
+                )
+            }
+        }
+    }
 </div>
 
 

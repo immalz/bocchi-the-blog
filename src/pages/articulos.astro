@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Button from "../components/Button.astro";
+import SideMenu from "../components/SideMenu.astro";
 import { blogs } from "../data/blogs";
 ---
 
@@ -30,7 +31,12 @@ import { blogs } from "../data/blogs";
         }
     </section>
 
-    <Button text="Regresar" route=""/>
+
+
+    <SideMenu slot="aside" mode="normal"/>
+
+
+    <Button text="Regresar" route="javascript: history.go(-1)"/>
 </Layout>
 
 

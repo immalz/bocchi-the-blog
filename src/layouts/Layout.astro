@@ -32,8 +32,9 @@ const { title } = Astro.props;
 			<section>
 				<slot />
 			</section>
+
 			<aside>
-				<SideMenu />
+				<slot name="aside" />
 			</aside>
 		</main>
 		<Footer />

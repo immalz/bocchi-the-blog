@@ -1,0 +1,35 @@
+---
+import { getShareUrl } from '../data/share.js'
+import Icon from './Icon.astro'
+---
+
+<ul class="share">
+    <li>
+    <a href={getShareUrl('facebook', Astro.url, 'tienes que probar esta app')} target="_blank" rel="noopener">
+      <Icon icon="facebook"/>
+      
+    </a>
+  </li>  
+
+  <li>
+    <a href={getShareUrl('twitter', Astro.url, 'Check out this blog post!')} target="_blank" rel="noopener">
+        <Icon icon="twitter"/>
+      
+    </a>
+  </li>
+  <li>
+    <a href={getShareUrl('linkedin', Astro.url, 'Check out this blog post!')} target="_blank" rel="noopener">
+        <Icon icon="linkedin"/>
+      
+    </a>
+  </li>
+
+</ul>
+
+
+<style lang="scss">
+ ul {
+    display: flex;
+    gap: 20px;
+ }
+</style>

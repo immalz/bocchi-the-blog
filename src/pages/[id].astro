@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro"
 import Button from "../components/Button.astro"
+import SideMenu from "../components/SideMenu.astro"
+import Icon from "../components/Icon.astro"
 
 export async function getStaticPaths() {
   return [
@@ -13,31 +15,52 @@ export async function getStaticPaths() {
 }
 
 const { id } = Astro.params;
-import { blogs } from '../data/blogs';
 
-const blog: any = blogs.find((blog) => blog.id === id);
+import { blogs } from '../data/blogs';
+import SocialShare from "../components/SocialShare.astro";
+
+let blog: any = blogs.find((blog) => blog.id === id);
+
+blog.sections = blog.sections.map((section: any) => {
+  return {
+    ...section,
+    route: `${section.subtitle.toLowerCase().replace(' ', '-')}`
+  }
+});
+
+const sections: string[] = blog.sections.map((section: any) => section.subtitle);
 ---
 
 
 <Layout title={blog.title}>
   <main>
     <h1 style={`view-transition-name: title-${blog.id}`}>{blog.title}</h1>
-    <h4>Author: {blog.author}</h4>
+    <p> { blog.date } </p>
+    <SocialShare/>
+    <!-- <p>Comparte este articulo en: 
+      <a href="#" target="_blank"><Icon icon="facebook"/></a>
+      <a href="#" target="_blank"><Icon icon="twitter"/></a>
+      <a href="#" target="_blank"><Icon icon="linkedin"/></a>
+    </p> -->
     <img src={`${blog.image}`} transition:name={`blog-img-name-${blog.id}`}>
-    <h2>{blog.content}</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus suscipit assumenda ea deserunt nobis cupiditate fugiat unde consequatur excepturi sequi, ut autem saepe quo, est quae fuga! Natus dolorem aliquam adipisci nostrum soluta assumenda ut quos ipsam ipsum! Sunt, ipsum? Maiores, saepe commodi? Voluptates ducimus aperiam inventore qui nemo consequuntur dicta expedita et tenetur officia repudiandae quibusdam ex odit id ratione, sint iure dolorum, unde libero quo! Sunt doloribus voluptates sint ullam aut earum cumque, repellendus recusandae! Perspiciatis deleniti ea voluptatum aperiam cupiditate suscipit esse dolorem officiis veniam laboriosam ducimus, at labore praesentium quo minima rem molestiae fugit commodi hic!</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus suscipit assumenda ea deserunt nobis cupiditate fugiat unde consequatur excepturi sequi, ut autem saepe quo, est quae fuga! Natus dolorem aliquam adipisci nostrum soluta assumenda ut quos ipsam ipsum! Sunt, ipsum? Maiores, saepe commodi? Voluptates ducimus aperiam inventore qui nemo consequuntur dicta expedita et tenetur officia repudiandae quibusdam ex odit id ratione, sint iure dolorum, unde libero quo! Sunt doloribus voluptates sint ullam aut earum cumque, repellendus recusandae! Perspiciatis deleniti ea voluptatum aperiam cupiditate suscipit esse dolorem officiis veniam laboriosam ducimus, at labore praesentium quo minima rem molestiae fugit commodi hic!</p>
+    {
+      blog.sections.map((section: any) => (
+        <section id={`${section.route}`} >
+          <h2>{section.subtitle}</h2>
+          <p>{section.text}</p>
+        </section>
+      ))
+    }
   </main>
 
-  <Button text="Regresar" route=""/>
-
+  <Button text="Regresar" route="javascript: history.go(-1)" />
+  <SideMenu slot="aside" mode="post" sections={[...sections]} />
 </Layout>
 
 <style lang="scss">
-
   main {
     width: 100%;
-
+ 
     img {
       width: 100%;
       height: 500px;
@@ -46,8 +69,7 @@ const blog: any = blogs.find((blog) => blog.id === id);
     }
 
     h1 {
-      width: 100%;
-      text-align: center;
+      width: fit-content;
       margin-bottom: 10px;
     }
 

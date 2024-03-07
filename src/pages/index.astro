@@ -1,12 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CardsContainer from '../components/CardsContainer.astro';
+import SideMenu from '../components/SideMenu.astro';
 
 ---
 
 <Layout title="Bocchi the blog">
     <h1>Moving fast breaks things: the importance of a staging environment</h1>
     <CardsContainer />
+
+    <SideMenu slot="aside" mode="normal"/>
 </Layout>
 
 <style>
