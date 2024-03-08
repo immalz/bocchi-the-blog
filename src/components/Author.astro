@@ -25,17 +25,17 @@ sections = sections.map((section: any) => {
     {
         sections.map((section: any, index: number) => {
             return (
-                <a href=`${section.route}` > {section.title} </a>
+                section.title && <a href=`${section.route}` > {section.title} </a>
             )
         })
     }
 </div>
 
-<p>Articulo Relacionado</p>
+<!-- <p>Articulo Relacionado</p>
 
 <div class="related">
     <img src="/images/404.png" alt="">
-</div>
+</div> -->
 
 <style lang="scss">
 

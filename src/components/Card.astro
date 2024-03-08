@@ -30,7 +30,7 @@ const blog = blogs.find((blog: Blog) => blog.id === article.id) as Blog;
     </div>
     <div class="card__text">
         <h2>{blog.title}</h2>
-        <p>{blog.content} Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+        <p>{blog.content}</p>
         <div class="author">
             <p>{blog.author}</p>
             <p>{blog.date}</p>
@@ -90,7 +90,7 @@ const blog = blogs.find((blog: Blog) => blog.id === article.id) as Blog;
             h2 {
                 font-size: 25px;
                 color: #575757;
-                line-height: 20px;
+                line-height: 24px;
                 transition: all 0.2s ease-in-out;
                 margin-bottom: 10px;
             }
