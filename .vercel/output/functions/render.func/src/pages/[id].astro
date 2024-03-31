@@ -1,0 +1,109 @@
+---
+import Layout from "../layouts/Layout.astro"
+import Button from "../components/Button.astro"
+import SideMenu from "../components/SideMenu.astro"
+import Icon from "../components/Icon.astro"
+
+export async function getStaticPaths() {
+  return [
+    { params: { id: 'fallece-akira-toriyama-a-la-edad-de-68' } },
+    { params: { id: 'bocchi-2' } },
+    { params: { id: 'bocchi-3' } },
+    { params: { id: 'bocchi-4' } },
+    { params: { id: 'bocchi-5' } },
+  ];
+}
+
+const { id } = Astro.params;
+
+import { blogs } from '../data/blogs';
+
+let blog: any = blogs.find((blog) => blog.id === id);
+
+blog.sections = blog.sections.map((section: any) => {
+  return {
+    ...section,
+    route: `${section.subtitle.toLowerCase().replace(' ', '-')}`
+  }
+});
+
+const sections: string[] = blog.sections.map((section: any) => section.subtitle);
+---
+
+
+<Layout title={blog.title}>
+  <main>
+    <h1 style={`view-transition-name: title-${blog.id}`}>{blog.title}</h1>
+    <p> { blog.date } </p>
+    <!-- <SocialShare/> -->
+    <img src={`${blog.image}`} transition:name={`blog-img-name-${blog.id}`}>
+    {
+      blog.sections.map((section: any) => (
+        <section id={`${section.route}`} >
+          {section.subtitle && <h2>{section.subtitle}</h2>}
+          {section.image && <img class="body" src={`${section.image}`} alt={`${section.subtitle}`}>}
+          <p>{section.text}</p>
+        </section>
+      ))
+    }
+  </main>
+
+  <Button text="Regresar" route="javascript: history.go(-1)" />
+  <SideMenu slot="aside" mode="post" sections={[...sections]} />
+</Layout>
+
+<style lang="scss">
+  main {
+    width: 100%;
+ 
+    img {
+      width: 100%;
+      height: 500px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    img.body {
+      max-width: 90%;
+      height: max-content;
+    }
+
+    h1 {
+      width: fit-content;
+      margin-bottom: 10px;
+    }
+
+    h4 {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: 300;
+    }
+
+    h2 {
+      font-size: 30px;
+      margin: 20px 0;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: 300;
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      h2 {
+        min-height: 0;
+        width: 100%;
+        text-align: start;
+      }
+    }
+
+  }
+
+</style>
