@@ -15,7 +15,7 @@ export default defineConfig({
 		},
 	}),
 	integrations: [sitemap()],
-	output: "server",
+	output: "hybrid",
 	site: seoConfig.baseURL,
 	// vite: {
 	// 	build: {
