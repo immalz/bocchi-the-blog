@@ -23,7 +23,7 @@ sections = sections.map((section: any) => {
 
 <div class="sections">
     {
-        sections.map((section: any, index: number) => {
+        sections.map((section: any) => {
             return (
                 section.title && <a href=`${section.route}` > {section.title} </a>
             )
